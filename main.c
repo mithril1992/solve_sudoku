@@ -11,9 +11,9 @@ int main(int argc, char* argv[])
 	char *token, buffer[BUFFER_SIZE];
 	uint16_t grid[81];
 	size_t size;
-	if(argc != 2)
+	if(argc != 3)
 	{
-		printf("usage: %s <source file name>\n", argv[0]);
+		printf("usage: %s <source file name> <destination file name>\n", argv[0]);
 		exit(1);
 	}
 
@@ -25,6 +25,8 @@ int main(int argc, char* argv[])
 	}
 
 	size = fread(buffer, sizeof(char), BUFFER_SIZE, source_file);
+
+	fclose(source_file);
 
 	token = strtok(buffer, ",\n");
 	if(token == NULL)
@@ -48,15 +50,19 @@ int main(int argc, char* argv[])
 		grid[i] = set_flag(0, token_value);
 	}
 
+	/*
+	// output for print debug
 	printf("problem\n");
 
 	view_grid(grid);
+	*/
 
 	init_grid(grid);
 
 	solve_grid(grid);
 
-	printf("\nresult:\n");
+	FILE* destination_file = fopen("sudokuA.csv", "w");
+	fprintf(destination_file, "\nresult:\n");
 	view_grid(grid);
 
 	return 0;

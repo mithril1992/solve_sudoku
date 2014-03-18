@@ -221,6 +221,6 @@ void view_grid(const uint16_t* grid)
 		if(i % 9 == 8)
 			printf("\n");
 		else
-			printf("、");
+			printf(",");
 	}
 }
