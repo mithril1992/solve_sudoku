@@ -193,8 +193,6 @@ uint16_t* solve_grid(uint16_t* grid)
 			}
 		}
 
-		printf("------------------\n");
-		view_grid(grid);
 		return solve_grid(grid);
 	}
 
@@ -223,6 +221,6 @@ void view_grid(const uint16_t* grid)
 		if(i % 9 == 8)
 			printf("\n");
 		else
-			printf(" ");
+			printf("、");
 	}
 }
